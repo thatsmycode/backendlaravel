@@ -29,6 +29,7 @@ class EquipCrudController extends CrudController
         CRUD::setModel(\App\Models\Equip::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/equip');
         CRUD::setEntityNameStrings('equip', 'equips');
+
     }
 
     /**
@@ -41,11 +42,9 @@ class EquipCrudController extends CrudController
     {
         CRUD::setFromDb(); // columns
 
-        /**
-         * Columns can be defined using the fluent syntax or array syntax:
-         * - CRUD::column('price')->type('number');
-         * - CRUD::addColumn(['name' => 'price', 'type' => 'number']); 
-         */
+        CRUD::column('partida_id');
+        CRUD::column('nom');
+        CRUD::column('punts');
     }
 
     /**
@@ -70,14 +69,5 @@ class EquipCrudController extends CrudController
          */
     }
 
-    /**
-     * Define what happens when the Update operation is loaded.
-     * 
-     * @see https://backpackforlaravel.com/docs/crud-operation-update
-     * @return void
-     */
-    protected function setupUpdateOperation()
-    {
-        $this->setupCreateOperation();
-    }
+    
 }

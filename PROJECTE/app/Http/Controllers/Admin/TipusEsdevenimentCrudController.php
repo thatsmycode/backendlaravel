@@ -26,7 +26,7 @@ class TipusEsdevenimentCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\TipusEsdeveniment::class);
+        CRUD::setModel(App\Models\TipusEsdeveniment::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/tipus-esdeveniment');
         CRUD::setEntityNameStrings('tipus esdeveniment', 'tipus esdeveniments');
     }
@@ -56,7 +56,7 @@ class TipusEsdevenimentCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::setValidation(TipusEsdevenimentRequest::class);
+        CRUD::setValidation(App\Models\TipusEsdeveniment::class);
 
         CRUD::field('nom');
 

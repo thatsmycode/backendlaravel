@@ -10,6 +10,8 @@ class Esdeveniment extends Model
 {
     use CrudTrait;
     use HasFactory;
+
+    public $timestamps = false;
     protected $fillable = [
         'id',
         'partida_id',
