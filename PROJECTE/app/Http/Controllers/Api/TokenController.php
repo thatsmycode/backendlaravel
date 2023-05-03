@@ -24,7 +24,7 @@ class TokenController extends Controller
        return response()->json([
            "success" => true,
            "user"    => $request->user(),
-           "roles"   => $user->getRoleNames(),
+//"roles"   => $user->getRoleNames(),
        ]);
    }
 
@@ -42,7 +42,7 @@ class TokenController extends Controller
             'email'    => $data['email'],
             'password' => Hash::make($data['password']),            
         ]);
-        $user->assignRole('1');
+        //$user->assignRole('1');
         
         $token = $user->createToken("authToken")->plainTextToken;
 

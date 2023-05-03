@@ -10,9 +10,11 @@ use Illuminate\Database\Eloquent\Model;
 class Combat extends Model
 {
     use HasFactory;
+
+    public $timestamps = false;
     protected $fillable = [
-        'id_fita',
-        'id_equip',
+        'fita_id',
+        'equip_id',
         'soldadets'        
     ];
 

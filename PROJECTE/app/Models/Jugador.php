@@ -14,11 +14,11 @@ class Jugador extends Model
     public $timestamps = false;
     protected $fillable = [
         'id',
-        'id_usuari',//fk usuari
+        'user_id',
         'nom',
         'soldadets',
         'img',
-        'id_equip'//fk qeuip
+        'equip_id'
     ];
     public function fitaFeta(){
         return $this->hasMany(FitaFeta::class);

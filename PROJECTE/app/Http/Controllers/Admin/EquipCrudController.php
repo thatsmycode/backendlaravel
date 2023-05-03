@@ -56,9 +56,12 @@ class EquipCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
+
         CRUD::setValidation(EquipRequest::class);
 
-        CRUD::setFromDb(); // fields
+        CRUD::field('partida_id');
+        CRUD::field('nom');
+        CRUD::field('punts');
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:

@@ -49,5 +49,7 @@ Route::apiResource('/fitasfetas',  FitaFetaController::class);
 Route::get('/fitasfetas{id}',[ FitaFetaController::class, 'show']);
 
 Route::apiResource('/combats',  CombatController::class);
-Route::get('/combat{id}',[ CombatController::class, 'show']);
-Route::get('/combat{id}',[ CombatController::class, 'update']);
+
+Route::get('/combats{id}',[ CombatController::class, 'show']);
+Route::put('/combats{id}',[ CombatController::class, 'update']);
+Route::post('/combats{id}',[ CombatController::class, 'store']);

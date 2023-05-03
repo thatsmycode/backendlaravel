@@ -43,20 +43,29 @@ class CombatController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, int $id, int $soldadets) 
+    public function update(Request $request, string $id, string $soldadets) 
     {
         $combat = Combat::find($id);
     
         if (!$combat) {
             return response()->json(['error' => 'Combat not found'], 404);
         }
-    
-        $combat->fill($request->all());
+        $soldadets = $request->input('soldadets');
+
+        if (!is_numeric($soldadets)) {
+            return response()->json([
+                'error' => 'Invalid input value for "soldadets"'
+            ], 400);
+        }
+        if ($combat->soldadets == null){
+            $combat->soldadets = 0;
+        };
+        $combat->soldadets += intval($soldadets);
         $combat->save();
     
         return response()->json($combat, 200);
     }
-    
+
 
     
 }

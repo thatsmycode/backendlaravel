@@ -38,7 +38,8 @@ class MapaCrudController extends CrudController
      * @return void
      */
     protected function setupListOperation()
-    {
+    {   
+        CRUD::column('nom');
         CRUD::column('lat1');
         CRUD::column('long1');
         CRUD::column('lat2');
@@ -60,7 +61,7 @@ class MapaCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::setValidation(MapaRequest::class);
-
+        CRUD::field('nom');
         CRUD::field('lat1');
         CRUD::field('long1');
         CRUD::field('lat2');

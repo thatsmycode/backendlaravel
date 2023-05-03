@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('equips', function (Blueprint $table) {
             $table->id('id');
             $table->unsignedBigInteger('partida_id');
-            $table->foreign('partida_id')->references('id')->on('partidas')//fk equip
+            $table->foreign('partida_id')->references('id')->on('partidas')
             ->onUpdate('cascade')->onDelete('cascade');
             $table->string('nom');
             $table->string('punts');

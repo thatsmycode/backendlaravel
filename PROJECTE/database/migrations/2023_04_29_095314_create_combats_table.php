@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('equip_id');
             $table->foreign('equip_id')->references('id')->on('equips')
             ->onUpdate('cascade')->onDelete('cascade');
-            $table->integer('soldadets');
+            $table->integer('soldadets')->default('0');
         });
     }
 
