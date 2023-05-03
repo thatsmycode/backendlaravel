@@ -30,7 +30,7 @@ class FitaFetaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(int $id)
     {
         $fitafeta = FitaFeta::find($id);
         if (!$fitafeta) {

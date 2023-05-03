@@ -22,7 +22,7 @@ class EsdevenimentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(int $id)
     {
         $esdv = Esdeveniment::find($id);
         if (!$esdv) {
@@ -34,7 +34,7 @@ class EsdevenimentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-   // public function update(Request $request, string $id)
+   // public function update(Request $request, int $id)
    // {
         //
    // }
@@ -42,7 +42,7 @@ class EsdevenimentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-  //  public function destroy(string $id)
+  //  public function destroy(int $id)
   // {
         //
    // }

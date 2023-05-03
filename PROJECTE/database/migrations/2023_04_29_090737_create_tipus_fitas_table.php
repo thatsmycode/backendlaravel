@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('tipus_fitas', function (Blueprint $table) {
             $table->id();
+            $table->string('nom');
             $table->timestamps();
         });
     }

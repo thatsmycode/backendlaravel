@@ -43,7 +43,7 @@ class CombatController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id) //passar el num d soldadets afegir
+    public function update(Request $request, int $id, int $soldadets) 
     {
         $combat = Combat::find($id);
     

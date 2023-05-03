@@ -16,7 +16,7 @@ class Tipus_esdevenimentController extends Controller
         return response()->json($tipus);
     }
 
-    public function show(string $id)
+    public function show(int $id)
     {
         
         $tipus = TipusEsdeveniment::find($id);

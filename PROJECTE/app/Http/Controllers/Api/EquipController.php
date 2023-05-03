@@ -22,7 +22,7 @@ class EquipController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(int $id)
     {
         $equip = Equip::find($id);
         if (!$equip) {

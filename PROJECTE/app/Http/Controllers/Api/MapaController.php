@@ -26,7 +26,7 @@ class mapaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function show($id)
+    public function show(int $id)
     {
         $mapa = Mapa::find($id);
         if (!$mapa) {
