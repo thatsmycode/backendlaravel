@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class FitaFeta extends Model
 {
+    
     use CrudTrait;
     use HasFactory;
     protected $fillable = [

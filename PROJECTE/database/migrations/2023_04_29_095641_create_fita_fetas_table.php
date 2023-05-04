@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('fita_fetas', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('jugador_id');
+            $table->foreign('jugador_id')->references('id')->on('jugadors')
+            ->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('fita_id');
+            $table->foreign('fita_id')->references('id')->on('fitas')
+            ->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

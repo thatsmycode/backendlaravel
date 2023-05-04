@@ -15,9 +15,7 @@ class Jugador extends Model
     protected $fillable = [
         'id',
         'user_id',
-        'nom',
         'soldadets',
-        'img',
         'equip_id'
     ];
     public function fitaFeta(){

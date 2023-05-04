@@ -40,9 +40,8 @@ class JugadorCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('usuari_id');
-        CRUD::column('nom');
-        CRUD::column('img');
+        CRUD::column('user_id');
+        CRUD::column('soldadets');
         CRUD::column('equip_id');
 
         /**
@@ -62,9 +61,8 @@ class JugadorCrudController extends CrudController
     {
         CRUD::setValidation(JugadorRequest::class);
 
-        CRUD::field('usuari_id');
-        CRUD::field('nom');
-        CRUD::field('img');
+        CRUD::field('user_id');
+        CRUD::field('soldadets');
         CRUD::field('equip_id');
 
         /**
