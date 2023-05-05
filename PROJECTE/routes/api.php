@@ -25,7 +25,7 @@ use App\Http\Controllers\Api\EsdevenimentController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('/user', [TokenController::class, 'user']);//->middleware('auth:sanctum');  
+Route::get('/user', [TokenController::class, 'user'])->middleware('auth:sanctum');  
 Route::post('/register', [TokenController::class, 'register']);//->middleware('auth:sanctum'); postman ok
 Route::post('/login', [TokenController::class, 'login']);//->middleware('auth:sanctum'); postman ok
 

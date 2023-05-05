@@ -28,6 +28,12 @@ class User extends Authenticatable
         'img',
         
     ];
+    public function setImgAttribute($value)
+{
+    $this->attributes['img'] = 'storage/' . $value;
+}
+
+
 
     /**
      * The attributes that should be hidden for serialization.

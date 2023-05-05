@@ -18,6 +18,7 @@ class Jugador extends Model
         'soldadets',
         'equip_id'
     ];
+    
     public function fitaFeta(){
         return $this->hasMany(FitaFeta::class);
     }
