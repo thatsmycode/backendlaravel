@@ -32,22 +32,48 @@
         <div id="map">
  
 </section>
+<section>
+  <div class="footer botons">
+    <button id="interactuar" onclick="isInPosition()">interactuar</button>
+  </div>
+</section>
+
 <script>
+const mapa = {id:1, lat1:41.2400, long1:1.6800, lat2:41.21, long2: 1.750};
 const llistafitasid = [
-  {id:1, lat: 41.25, long: 41.30},
-  {id:2, lat: 41.25, long: 41.30},
-  {id:3, lat: 41.25, long: 41.50},
-  {id:4, lat: 41.10, long: 41.20},
-  {id:5, lat: 41.25, long: 41.35}
+  {id:1, lat: 41.21454, long: 1.72551},//Lluís companys
+  {id:2, lat: 41.21783, long: 1.73892},//Sant Cristòfol
+  {id:3, lat: 41.22882, long: 1.72293},//Sant Antoni Abad
+  {id:4, lat: 41.22428, long: 1.72591},//Ventosa
+  {id:5, lat: 41.22200, long: 1.71563}//Satn Joan
 ];
 
-const mir = { lat: 42.24, lng: 1.70 };
-const map = L.map('map').setView([41.23112, 1.72866], 19);
+// Define rectangle bounds
+const rectBounds = [  [mapa.lat1, mapa.long1], // southwest corner
+                      [mapa.lat2, mapa.long2]  // northeast corner
+                    ];
 
+// Calculate center of rectangle
+const rectCenter = [  (rectBounds[0][0] + rectBounds[1][0]) / 2, // average latitude
+                      (rectBounds[0][1] + rectBounds[1][1]) / 2  // average longitude
+                    ];
+
+// Create map with center at rectangle center
+const map = L.map('map').setView(rectCenter, 14);
+// map.invalidateSize();
+
+
+// Add tile layer to map
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 25,
-  center: mir,
 }).addTo(map);
+
+// Add yellow rectangle to map
+L.rectangle(rectBounds, {color: 'yellow', weight: 1}).addTo(map);
+
+
+
+const markersAndCircles = [];
 
 llistafitasid.forEach(function(fita) {
   const marker = L.marker([fita.lat, fita.long]).addTo(map)
@@ -55,7 +81,7 @@ llistafitasid.forEach(function(fita) {
         .openPopup();
 
   
-        const circleCenter = L.latLng(fita.lat, fita.long);
+  const circleCenter = L.latLng(fita.lat, fita.long);
   const radius = 10; // in meters
   const circle = L.circle(circleCenter, {
     color: '#' + (Math.random() * 0xFFFFFF << 0).toString(16), // generate a random color for the circle
@@ -64,11 +90,15 @@ llistafitasid.forEach(function(fita) {
     radius: radius
   }).addTo(map);
 
-  const bounds = L.latLngBounds([marker.getLatLng(), circle.getBounds()]);
-  map.fitBounds(bounds);
+  markersAndCircles.push(marker);
+  markersAndCircles.push(circle);
 });
 
-map.on('click', function(e) {
+// Fit map bounds to markers and circles
+const group = L.featureGroup(markersAndCircles);
+map.fitBounds(group.getBounds());
+
+map.on('click', function(e) { //aixo x admin nomes
   alert('Lat: ' + e.latlng.lat.toFixed(5) + ', Long: ' + e.latlng.lng.toFixed(5));
 });
 
