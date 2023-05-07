@@ -34,7 +34,7 @@
 </section>
 <section>
   <div class="footer botons">
-    <button id="interactuar" onclick="isInPosition()">interactuar</button>
+    <button class="btn" id="interactuar" onclick="isInPosition()">interactuar</button>
   </div>
 </section>
 
