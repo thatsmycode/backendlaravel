@@ -1,26 +1,25 @@
 <?php
 
 namespace App\Http\Resources;
-
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PartidaResource extends JsonResource
+class FitaFetaResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
      *
-     * @param  Request  $request
-     * @return array<string, mixed>
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
      */
     public function toArray($request)
     {
         return [
             'id' => $this->id,
-            'nom' => $this->nom,
-            'duracio' => $this->duracio,
-            'puntsVictoria'=> $this->puntsVictoria,
-            'mapa_id' => $this->mapa_id,
+            'jugador_id' => $this->jugador_id,
+            'fita_id' => $this->fita_id,
+            'created_at' => $this->created_at
+            
         ];
     }
 }

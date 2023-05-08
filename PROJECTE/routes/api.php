@@ -30,8 +30,8 @@ Route::post('/register', [TokenController::class, 'register']);//->middleware('a
 Route::post('/login', [TokenController::class, 'login']);//->middleware('auth:sanctum'); postman ok
 
 
-Route::apiResource('partidas', PartidaController::class); //postman ok
-Route::get('/partidas/{id}', [PartidaController::class, 'show']); // comunica pero no troba partida
+Route::apiResource('/partidas', PartidaController::class); 
+Route::get('/partidas/{id}', [PartidaController::class, 'show']); 
 
 Route::apiResource('/mapas',  MapaController::class);
 Route::get('/mapas/{id}',[ MapaController::class, 'show']);
@@ -45,6 +45,7 @@ Route::get('/fitas/{id}',[ FitaController::class, 'show']);
 
 Route::apiResource('/fitasfetas',  FitaFetaController::class);
 Route::get('/fitasfetas/{id}',[ FitaFetaController::class, 'show']);
+Route::post('/fitasfetas/{J.id}{F.id}',[ FitaFetaController::class, 'store']);
 
 Route::apiResource('/combats',  CombatController::class);
 

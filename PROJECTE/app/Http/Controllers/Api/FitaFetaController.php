@@ -3,47 +3,42 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Jugador;
-use Illuminate\Http\Request;
 use App\Models\FitaFeta;
+use App\Http\Resources\FitaFetaResource;
+use Illuminate\Http\Request;
+ 
 class FitaFetaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
+  
     public function index()
     {
-        $fitafeta = FitaFeta::all();
-        return response()->json($fitafeta);//where id jug = idjug
+        $fitaFetas = FitaFeta::all();
+        return FitaFetaResource::collection($fitaFetas);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request, int $fita, int $jugador)
+    public function store(Request $request)
     {
-        $fitafeta = FitaFeta::create([
-            'jugador_id'  => $jugador,
-            'fita_id' => $fita
+        $validatedData = $request->validate([
+            'jugador_id' => 'required|numeric',
+            'fita_id' => 'required|numeric',
         ]);
-
-        $fitafeta->save();
-        return response()->json($fitafeta, 201);
+    
+        $fitaFeta = FitaFeta::create([
+            'jugador_id' => $validatedData['jugador_id'],
+            'fita_id' => $validatedData['fita_id']
+        ]);
+    
+        $fitaFeta->save();
+        return new FitaFetaResource($fitaFeta);
     }
-
-    /**
-     * Display the specified resource.
-     */
+    
     public function show(string $id)
     {
-        $fitafeta = FitaFeta::find($id);
-        if (!$fitafeta) {
+        $fitaFeta = FitaFeta::find($id);
+        if (!$fitaFeta) {
             return response()->json(['error' => 'FitaFeta not found'], 404);
         }
-        return response()->json($fitafeta);
+        return new FitaFetaResource($fitaFeta);
     }
-
-  
-
-  
 }
