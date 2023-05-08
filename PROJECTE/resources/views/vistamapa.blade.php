@@ -7,7 +7,7 @@
     integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <script src="{{ asset(mix('js/app.js')) }}"></script>
     <script src="/path/to/mousetrap.min.js"></script>
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    
 
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"

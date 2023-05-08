@@ -34,22 +34,20 @@ Route::apiResource('partidas', PartidaController::class); //postman ok
 Route::get('/partidas/{id}', [PartidaController::class, 'show']); // comunica pero no troba partida
 
 Route::apiResource('/mapas',  MapaController::class);
-Route::get('/mapas{id}',[ MapaController::class, 'show']);
-
-Route::apiResource('/esdeveniments',  EsdevenimentController::class);
-Route::get('/esdeveniments{id}',[ EsdevenimentController::class, 'show']);
+Route::get('/mapas/{id}',[ MapaController::class, 'show']);
 
 Route::apiResource('/equips',  EquipController::class);
-Route::get('/equips{id}',[ EquipController::class, 'show']);
+Route::get('/equips/{id}',[ EquipController::class, 'show']);
+Route::put('/equips/{id}/{punts}',[ EquipController::class, 'update']);
 
 Route::apiResource('/fitas',  FitaController::class);
-Route::get('/fitas{id}',[ FitaController::class, 'show']);
+Route::get('/fitas/{id}',[ FitaController::class, 'show']);
 
 Route::apiResource('/fitasfetas',  FitaFetaController::class);
-Route::get('/fitasfetas{id}',[ FitaFetaController::class, 'show']);
+Route::get('/fitasfetas/{id}',[ FitaFetaController::class, 'show']);
 
 Route::apiResource('/combats',  CombatController::class);
 
-Route::get('/combats{id}',[ CombatController::class, 'show']);
-Route::put('/combats{id}',[ CombatController::class, 'update']);
-Route::post('/combats{id}',[ CombatController::class, 'store']);
+Route::get('/combats/{id}',[ CombatController::class, 'show']);
+Route::put('/combats/{id}',[ CombatController::class, 'update']);
+Route::post('/combats/{id}',[ CombatController::class, 'store']);

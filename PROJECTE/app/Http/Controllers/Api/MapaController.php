@@ -4,35 +4,33 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Mapa;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-
+use App\Http\Resources\MapaResource;
 class mapaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function index()
-    {
-        $mapas = Mapa::all();
-        return response()->json($mapas);
-    }
+    
 
+public function index()
+{
+    $mapas = Mapa::all();
+    return MapaResource::collection($mapas);
+}
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function show(int $id)
-    {
-        $mapa = Mapa::find($id);
-        if (!$mapa) {
-            return response()->json(['error' => 'Mapa not found'], 404);
-        }
-        return response()->json($mapa);
+public function show(int $id)
+{
+    $mapa = Mapa::find($id);
+    if (!$mapa) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Mapa not found',
+        ], 404);
+    }else{
+        return response()->json([
+            'success' => true,
+            'data'    => new MapaResource($mapa)
+        ], 200);
     }
+     
+}
+
 
 }

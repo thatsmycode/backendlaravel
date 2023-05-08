@@ -14,7 +14,7 @@ class FitaFetaController extends Controller
     public function index()
     {
         $fitafeta = FitaFeta::all();
-        return response()->json($fitafeta);//
+        return response()->json($fitafeta);//where id jug = idjug
     }
 
     /**

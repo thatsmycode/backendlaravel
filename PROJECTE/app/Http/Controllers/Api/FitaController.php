@@ -2,34 +2,31 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Fita;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\FitaResource;
 
 class FitaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-      $fita = Fita::all();
-        return response()->json($fita);//
+        $fitas = Fita::all();
+        return FitaResource::collection($fitas);
     }
 
-
-    /**
-     * Display the specified resource.
-     */
     public function show(int $id)
     {
         $fita = Fita::find($id);
         if (!$fita) {
-            return response()->json(['error' => 'Fita not found'], 404);
+            return response()->json([
+                'success' => false,
+                'message' => 'Fita not found',
+            ], 404);
+        } else {
+            return response()->json([
+                'success' => true,
+                'data' => new FitaResource($fita)
+            ], 200);
         }
-        return response()->json($fita);
     }
-
-
-
 }
