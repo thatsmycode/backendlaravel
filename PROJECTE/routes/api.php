@@ -1,11 +1,11 @@
 <?php
 
-use App\Http\Controllers\API\PartidaController;
+use App\Http\Controllers\Api\PartidaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\TokenController;
 use App\Http\Controllers\Api\MapaController;
-
+use App\Http\Controllers\Api\FitaController;
 use App\Http\Controllers\Api\EquipController;
 use App\Http\Controllers\Api\FitaFetaController;
 use App\Http\Controllers\Api\CombatController;
