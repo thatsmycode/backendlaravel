@@ -9,8 +9,10 @@ use App\Http\Controllers\Api\FitaController;
 use App\Http\Controllers\Api\EquipController;
 use App\Http\Controllers\Api\FitaFetaController;
 use App\Http\Controllers\Api\CombatController;
-
+use App\Http\Controllers\Api\JugadorController;
 use App\Http\Controllers\Api\EsdevenimentController;
+use Illuminate\Support\Facades\JWTAuth;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -42,14 +44,21 @@ Route::get('/equips/list/{id}',[ EquipController::class, 'list']);
 Route::put('/equips/{id}/{punts}',[ EquipController::class, 'update']);
 
 Route::apiResource('/fitas',  FitaController::class);
-Route::get('/fitas/{id}',[ FitaController::class, 'show']);
+//Route::get('/fitas/{id}',[ FitaController::class, 'show']);
 
 Route::apiResource('/fitasfetas',  FitaFetaController::class);
 Route::get('/fitasfetas/{id}',[ FitaFetaController::class, 'show']);
-Route::post('/fitasfetas/{J.id}/{F.id}',[ FitaFetaController::class, 'store']);
+
 
 Route::apiResource('/combats',  CombatController::class);
 
 Route::get('/combats/{id}',[ CombatController::class, 'show']);
 Route::put('/combats/{id}',[ CombatController::class, 'update']);
 Route::post('/combats/{id}',[ CombatController::class, 'store']);
+
+
+Route::apiResource('/jugadors',  JugadorController::class);
+Route::get('/jugadors/{id}',[  JugadorController::class, 'show']);
+Route::get('/filter/{id}',[  JugadorController::class, 'filter']);
+
+

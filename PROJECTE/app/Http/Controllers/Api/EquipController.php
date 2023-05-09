@@ -9,6 +9,21 @@ use App\Models\Equip;
 
 class EquipController extends Controller
 {
+    public function index()
+    {
+        $equips = Equip::all();
+        if (!$equips) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Equips not found',
+            ], 404);
+        }else{
+        return response()->json([
+            'success' => true,
+            'data'    => $equips
+        ], 200);}
+    }
+    
     /**
      * Display a listing of the resource.
      */

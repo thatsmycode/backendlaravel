@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\Api;
+use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Jugador;
 use App\Http\Resources\JugadorResource;
-
+use App\Models\User;
 class jugadorController extends Controller
 {
     /**
@@ -18,25 +19,42 @@ class jugadorController extends Controller
         return JugadorResource::collection($jugadors);
     
     }
-
-   
+public function show(int $id)
+{ 
+    $jugador=Jugador::find($id);
+    if (!$jugador) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Jugador not found'
+        ], 200);
+    }else{
+        return response()->json([
+            'success' => true,
+            'data'    => new JugadorResource($jugador)
+        ], 200);
+}
+}
     /**
      * Display the specified resource.
      */
-    public function show(Request $request, int $equip)
+    public function filter (int $equip)
     {
-        $jugador = Jugador::where('user_id', $request->user())->where('equip_id', $equip)
-        ->first();
+        $user=Auth::id();
+       
+        $jugador = User::Jugador();
+        //where('user_id', $user );//->where('equip_id', $equip)->first();
+
         if (!$jugador) {
 
-            $newjug = Jugador::create([
-                'user_id' => $request->user(),
+           /* $newjug = Jugador::create([
+                'user_id' => $user,
                 'soldadets' => 0,
                 'equip_id' => $equip,
             ]);
+            */
             return response()->json([
                 'success' => true,
-                'data' => $newjug,
+                'data' => $user//newjug,
             ], 200);
         }else{
             return response()->json([
