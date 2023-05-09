@@ -59,6 +59,6 @@ Route::post('/combats/{id}',[ CombatController::class, 'store']);
 
 Route::apiResource('/jugadors',  JugadorController::class);
 Route::get('/jugadors/{id}',[  JugadorController::class, 'show']);
-Route::get('/filter/{id}',[  JugadorController::class, 'filter']);
 
+Route::get('/jugadors/list/{id}',[  JugadorController::class, 'list']);
 

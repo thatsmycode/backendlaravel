@@ -37,11 +37,11 @@ public function show(int $id)
     /**
      * Display the specified resource.
      */
-    public function filter (int $equip)
+    public function list (int $equip)
     {
-        $user=Auth::id();
+        
        
-        $jugador = User::Jugador();
+        $jugador = Jugador::where('equip_id', $equip)->first();
         //where('user_id', $user );//->where('equip_id', $equip)->first();
 
         if (!$jugador) {
@@ -54,7 +54,7 @@ public function show(int $id)
             */
             return response()->json([
                 'success' => true,
-                'data' => $user//newjug,
+                'message' => 'faaail'
             ], 200);
         }else{
             return response()->json([
