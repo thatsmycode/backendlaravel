@@ -33,12 +33,19 @@ class FitaFetaController extends Controller
         return new FitaFetaResource($fitaFeta);
     }
     
-    public function show(string $id)
-    {
-        $fitaFeta = FitaFeta::find($id);
+    public function show(string $id1 )
+    {   
+        $fitaFeta = FitaFeta::where('Jugador_id', $id1)->get();
         if (!$fitaFeta) {
-            return response()->json(['error' => 'FitaFeta not found'], 404);
+            return response()->json([
+                'success' => false,
+                'message' => 'Partida not found',
+            ], 404);
         }
-        return new FitaFetaResource($fitaFeta);
-    }
+        else{
+            return response()->json([
+                'success' => true,
+                'data'    => FitaFetaResource::collection($fitaFeta)], 200);
+            }    
+}
 }

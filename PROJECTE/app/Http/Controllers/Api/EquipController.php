@@ -12,13 +12,22 @@ class EquipController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function list(int $partida)
     {
-        $equips = Equip::all();
-        return response()->json($equips);
+        $equips = Equip::where('partida_id',$partida )->get();
+       
+        if (!$equips) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Equips not found',
+        ], 404);
+    }else{
+        return response()->json([
+            'success' => true,
+            'data'    => $equips
+        ], 200);
     }
-
-
+    }
     /**
      * Display the specified resource.
      */
@@ -26,10 +35,11 @@ class EquipController extends Controller
     {
         $equip = Equip::find($id);
         if (!$equip) {
-            return response()->json(['error' => 'Esdeveniment not found'], 404);
+            return response()->json(['error' => 'Equip not found'], 404);
         }
         return response()->json($equip);
     }
+    
 
     public function update(Request $request, int $id, int $punts) 
     {

@@ -38,6 +38,7 @@ Route::get('/mapas/{id}',[ MapaController::class, 'show']);
 
 Route::apiResource('/equips',  EquipController::class);
 Route::get('/equips/{id}',[ EquipController::class, 'show']);
+Route::get('/equips/list/{id}',[ EquipController::class, 'list']);
 Route::put('/equips/{id}/{punts}',[ EquipController::class, 'update']);
 
 Route::apiResource('/fitas',  FitaController::class);
@@ -45,7 +46,7 @@ Route::get('/fitas/{id}',[ FitaController::class, 'show']);
 
 Route::apiResource('/fitasfetas',  FitaFetaController::class);
 Route::get('/fitasfetas/{id}',[ FitaFetaController::class, 'show']);
-Route::post('/fitasfetas/{J.id}{F.id}',[ FitaFetaController::class, 'store']);
+Route::post('/fitasfetas/{J.id}/{F.id}',[ FitaFetaController::class, 'store']);
 
 Route::apiResource('/combats',  CombatController::class);
 
