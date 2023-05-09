@@ -44,15 +44,16 @@ Route::get('/equips/list/{id}',[ EquipController::class, 'list']);
 Route::put('/equips/{id}/{punts}',[ EquipController::class, 'update']);
 
 Route::apiResource('/fitas',  FitaController::class);
-//Route::get('/fitas/{id}',[ FitaController::class, 'show']);
+
 
 Route::apiResource('/fitasfetas',  FitaFetaController::class);
-Route::get('/fitasfetas/{id}',[ FitaFetaController::class, 'show']);
+Route::get('/fitasfetas/{id}',[ FitaFetaController::class, 'show']);//necessita clau composta o ferho difrent
 
 
 Route::apiResource('/combats',  CombatController::class);
 
-Route::get('/combats/{id}',[ CombatController::class, 'show']);
+Route::get('/combats/{id}',[ CombatController::class, 'show']);//necessita clau composta o ferho difrent
+
 Route::put('/combats/{id}',[ CombatController::class, 'update']);
 Route::post('/combats/{id}',[ CombatController::class, 'store']);
 

@@ -68,9 +68,11 @@ public function show(int $id)
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, int $id)
+    public function store(Request $request,)
     {
-        //
+       
+    
+        //hem de saber el userid i equipid
     }
 
 }
