@@ -64,9 +64,10 @@ public function show(int $id)
     {
        //incloure el si esta o no aki dins (del ekip), jo li tornare la info del jugador si o si, si no el troba el crea, si el troba li dona aket.
         $user = $request->user();
-                $equip= $request->get('equip');//mo passa per post en el body
+        $equip= $request->get('equip');//mo passa per post en el body
 
-        $jugador = Jugador::where('user_id', $user)->where('equip_id', $equip)->first();
+        $jugador = Jugador::where('user_id', $user->id)
+        ->where('equip_id', $equip)->first();
 
         if (!$jugador) {
 
@@ -84,6 +85,7 @@ public function show(int $id)
         }else{
             return response()->json([
                 'success' => true,
+                'message' => 'aquest es el teu jugador',
                 'data'    => new JugadorResource($jugador)
             ], 200);
         }
