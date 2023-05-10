@@ -35,7 +35,8 @@ class FitaFetaController extends Controller
     
     public function show(string $id1 )
     {   
-        $fitaFeta = FitaFeta::where('Jugador_id', $id1)->get();
+        //auth agafar userid, comprovar si la posicio k menvia, esta a 10 m del centre dalguna fita, fer un loop
+        $fitaFeta = FitaFeta::where('jugador_id', $id1)->get();
         if (!$fitaFeta) {
             return response()->json([
                 'success' => false,

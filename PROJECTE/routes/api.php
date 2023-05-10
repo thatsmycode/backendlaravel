@@ -63,3 +63,4 @@ Route::get('/jugadors/{id}',[  JugadorController::class, 'show']);
 
 Route::get('/jugadors/list/{id}',[  JugadorController::class, 'list']);
 
+Route::post('/jugadors',[ JugadorController::class, 'store'])->middleware('auth:sanctum');
