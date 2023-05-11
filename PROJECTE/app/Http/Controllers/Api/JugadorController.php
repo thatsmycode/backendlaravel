@@ -39,28 +39,9 @@ public function show(int $id)
         return response()->json(['error' => $e->getMessage()], 500);
     } 
 }
-    /**
-     * Display the specified resource.
-     */
-   /* public function list (int $equip)// comprova si tens un jugador en aquell equip
-    {       
-        $jugador = Jugador::where('equip_id', $equip)->first();
-        //where('user_id', $user );//->where('equip_id', $equip)->first();
-        if (!$jugador) {   
-            return response()->json([
-                'success' => false,
-                'message' => 'has de crearte un jugador'
-            ], 200);
-        }else{
-            return response()->json([
-                'success' => true,
-                'data'    => new JugadorResource($jugador)
-            ], 200);
-        }   
-    }*/
    
     /**
-     * Update the specified resource in storage.
+     * busca si existeix i sino tel crea.
      */
     public function store(Request $request)
     {
