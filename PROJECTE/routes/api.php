@@ -31,37 +31,37 @@ Route::post('/register', [TokenController::class, 'register']);
 Route::post('/login', [TokenController::class, 'login']);
 Route::post('/logout', [TokenController::class, 'logout'])->middleware('auth:sanctum');
 
-Route::middleware(['auth:sanctum', 'role:jugador'])->group(function () {
+//Route::middleware(['auth:sanctum', 'role:jugador'])->group(function () {
 
-Route::apiResource('/partidas', PartidaController::class)->middleware('auth:sanctum'); 
-Route::get('/partidas/{id}', [PartidaController::class, 'show'])->middleware('auth:sanctum'); 
+    Route::apiResource('/partidas', PartidaController::class)->middleware('auth:sanctum'); 
+    Route::get('/partidas/{id}', [PartidaController::class, 'show'])->middleware('auth:sanctum'); 
 
-Route::apiResource('/mapas',  MapaController::class)->middleware('auth:sanctum');
-Route::get('/mapas/{id}',[ MapaController::class, 'show'])->middleware('auth:sanctum');
+    Route::apiResource('/mapas',  MapaController::class)->middleware('auth:sanctum');
+    Route::get('/mapas/{id}',[ MapaController::class, 'show'])->middleware('auth:sanctum');
 
-Route::apiResource('/equips',  EquipController::class)->middleware(['auth','role:JUGADOR']);
+    Route::apiResource('/equips',  EquipController::class)->middleware(['auth','role:JUGADOR']);
 
-Route::get('/equips/{id}',[ EquipController::class, 'show'])->middleware('auth:sanctum');
-Route::get('/equips/list/{id}',[ EquipController::class, 'list'])->middleware('auth:sanctum');
-Route::put('/equips/{id}/{punts}',[ EquipController::class, 'update'])->middleware('auth:sanctum');
+    Route::get('/equips/{id}',[ EquipController::class, 'show'])->middleware('auth:sanctum');
+    Route::get('/equips/list/{id}',[ EquipController::class, 'list'])->middleware('auth:sanctum');
+    Route::put('/equips/{id}/{punts}',[ EquipController::class, 'update'])->middleware('auth:sanctum');
 
-Route::apiResource('/fitas',  FitaController::class)->middleware('auth:sanctum');
+    Route::apiResource('/fitas',  FitaController::class)->middleware('auth:sanctum');
 
-Route::apiResource('/fitasfetas',  FitaFetaController::class);
-Route::get('/fitasfetas/{id}',[ FitaFetaController::class, 'show']);//necessita clau composta o ferho difrent
+    Route::apiResource('/fitasfetas',  FitaFetaController::class);
+    Route::post('/fitasfetas/check',[ FitaFetaController::class, 'show']);//necessita clau composta o ferho difrent
 
 
-Route::apiResource('/combats',  CombatController::class);
+    Route::apiResource('/combats',  CombatController::class);
 
-Route::get('/combats/{id}',[ CombatController::class, 'show']);//necessita clau composta o ferho difrent
+    Route::get('/combats/{id}',[ CombatController::class, 'show']);//necessita clau composta o ferho difrent
 
-Route::put('/combats/{id}',[ CombatController::class, 'update']);
-Route::post('/combats/{id}',[ CombatController::class, 'store']);
+    Route::put('/combats/{id}',[ CombatController::class, 'update']);
+    Route::post('/combats/{id}',[ CombatController::class, 'store']);
 
-Route::apiResource('/jugadors',  JugadorController::class);//->middleware('auth:sanctum');
-Route::get('/jugadors/{id}',[  JugadorController::class, 'show'])->middleware('auth:sanctum');
+    Route::apiResource('/jugadors',  JugadorController::class);//->middleware('auth:sanctum');
+    Route::get('/jugadors/{id}',[  JugadorController::class, 'show'])->middleware('auth:sanctum');
 
-Route::get('/jugadors/list/{id}',[  JugadorController::class, 'list'])->middleware('auth:sanctum');
+    Route::get('/jugadors/list/{id}',[  JugadorController::class, 'list'])->middleware('auth:sanctum');
 
-Route::post('/jugadors',[ JugadorController::class, 'store'])->middleware('auth:sanctum');
-});
+    Route::post('/jugadors',[ JugadorController::class, 'store'])->middleware('auth:sanctum');
+//});

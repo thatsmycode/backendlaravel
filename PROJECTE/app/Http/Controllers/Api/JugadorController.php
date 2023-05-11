@@ -20,19 +20,24 @@ class jugadorController extends Controller
     
     }
 public function show(int $id)
-{ 
-    $jugador=Jugador::find($id);
-    if (!$jugador) {
-        return response()->json([
-            'success' => false,
-            'message' => 'Jugador not found'
-        ], 200);
-    }else{
-        return response()->json([
-            'success' => true,
-            'data'    => new JugadorResource($jugador)
-        ], 200);
-}
+{   
+    try{
+        $jugador=Jugador::find($id);
+        if (!$jugador) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Jugador not found'
+            ], 200);
+        }else{
+            return response()->json([
+                'success' => true,
+                'data'    => new JugadorResource($jugador)
+            ], 200);
+        }
+    }catch (\Exception $e) {
+        
+        return response()->json(['error' => $e->getMessage()], 500);
+    } 
 }
     /**
      * Display the specified resource.
@@ -41,10 +46,7 @@ public function show(int $id)
     {       
         $jugador = Jugador::where('equip_id', $equip)->first();
         //where('user_id', $user );//->where('equip_id', $equip)->first();
-
-        if (!$jugador) {
-
-          
+        if (!$jugador) {   
             return response()->json([
                 'success' => false,
                 'message' => 'has de crearte un jugador'
@@ -62,32 +64,38 @@ public function show(int $id)
      */
     public function store(Request $request)
     {
-        $user = $request->user();
-        $equip= $request->get('equip');//mo passa per post en el body
+        try{
+    
+            $user = $request->user();
+            $equip= $request->get('equip');//mo passa per post en el body
 
-        $jugador = Jugador::where('user_id', $user->id)
-        ->where('equip_id', $equip)->first();
+            $jugador = Jugador::where('user_id', $user->id)
+            ->where('equip_id', $equip)->first();
 
-        if (!$jugador) {
+            if (!$jugador) {
 
-            $newjug = Jugador::create([
-                'user_id' => $user->id,
-                'soldadets' => 0,
-                'equip_id' => $equip,
-            ])->assignRole('JUGADOR');
+                $newjug = Jugador::create([
+                    'user_id' => $user->id,
+                    'soldadets' => 0,
+                    'equip_id' => $equip,
+                ]);
 
-            return response()->json([
-                'success' => true,
-                'message' => 'creat jugador',
-                'data'=> new JugadorResource($newjug)
-            ], 200);
-        }else{
-            return response()->json([
-                'success' => true,
-                'message' => 'aquest es el teu jugador',
-                'data'    => new JugadorResource($jugador)
-            ], 200);
+                return response()->json([
+                    'success' => true,
+                    'message' => 'creat jugador',
+                    'data'=> new JugadorResource($newjug)
+                ], 200);
+            }else{
+                return response()->json([
+                    'success' => true,
+                    'message' => 'aquest es el teu jugador',
+                    'data'    => new JugadorResource($jugador)
+                ], 200);
+                }
+            }catch (\Exception $e) {
+        
+                return response()->json(['error' => $e->getMessage()], 500);
+            }
         }
-    }
 
 }

@@ -16,6 +16,7 @@ class FitaController extends Controller
 
     public function show(int $id)
     {
+        try{
         $fita = Fita::find($id);
         if (!$fita) {
             return response()->json([
@@ -27,6 +28,9 @@ class FitaController extends Controller
                 'success' => true,
                 'data' => new FitaResource($fita)
             ], 200);
+        }
+        }catch (\Exception $e){
+            return response()->json(['error' => $e->getMessage()], 500);
         }
     }
 }
