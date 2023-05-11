@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Role;
 use Illuminate\Support\Facades\Hash;
+
 use Illuminate\Support\Facades\Auth;
 
 
@@ -24,7 +26,7 @@ class TokenController extends Controller
        return response()->json([
            "success" => true,
            "user"    => $request->user(),
-//"roles"   => $user->getRoleNames(),
+           "roles"  => $user->getRoleNames(),
        ]);
    }
 
@@ -41,8 +43,7 @@ class TokenController extends Controller
             'name'     => $data['name'],
             'email'    => $data['email'],
             'password' => Hash::make($data['password']),            
-        ]);
-        //$user->assignRole('1');
+        ])->assignRole(Role::ADMIN);
         
         $token = $user->createToken("authToken")->plainTextToken;
 

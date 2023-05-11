@@ -66,7 +66,7 @@ class UserCrudController extends CrudController
     CRUD::field('email');
     CRUD::field('password');
     CRUD::field('img')->type('upload');
-
+    
     /**
      * Fields can be defined using the fluent syntax or array syntax:
      * - CRUD::field('price')->type('number');
@@ -119,7 +119,6 @@ protected function setupUpdateOperation()
             'value' => ($entry->img) ? '<img src="' . asset('storage/' . $entry->img) . '" style="max-width:200px;max-height:200px;">' : ''
         ]);
     
-    
-$this->crud->setUpdateView('edituser');
+ 
 }
 }

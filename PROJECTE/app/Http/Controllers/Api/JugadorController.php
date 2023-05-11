@@ -62,7 +62,6 @@ public function show(int $id)
      */
     public function store(Request $request)
     {
-       //incloure el si esta o no aki dins (del ekip), jo li tornare la info del jugador si o si, si no el troba el crea, si el troba li dona aket.
         $user = $request->user();
         $equip= $request->get('equip');//mo passa per post en el body
 
@@ -75,8 +74,8 @@ public function show(int $id)
                 'user_id' => $user->id,
                 'soldadets' => 0,
                 'equip_id' => $equip,
-            ]);
-            
+            ])->assignRole('JUGADOR');
+
             return response()->json([
                 'success' => true,
                 'message' => 'creat jugador',
