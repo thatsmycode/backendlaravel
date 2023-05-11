@@ -27,9 +27,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::get('/user', [TokenController::class, 'user'])->middleware('auth:sanctum');  
-Route::post('/register', [TokenController::class, 'register']);//->middleware('auth:sanctum'); postman ok
-Route::post('/login', [TokenController::class, 'login']);//->middleware('auth:sanctum'); postman ok
+Route::post('/register', [TokenController::class, 'register']);
+Route::post('/login', [TokenController::class, 'login']);
+Route::post('/logout', [TokenController::class, 'logout'])->middleware('auth:sanctum');
 
+Route::middleware(['auth:sanctum', 'role:jugador'])->group(function () {
 
 Route::apiResource('/partidas', PartidaController::class)->middleware('auth:sanctum'); 
 Route::get('/partidas/{id}', [PartidaController::class, 'show'])->middleware('auth:sanctum'); 
@@ -38,12 +40,12 @@ Route::apiResource('/mapas',  MapaController::class)->middleware('auth:sanctum')
 Route::get('/mapas/{id}',[ MapaController::class, 'show'])->middleware('auth:sanctum');
 
 Route::apiResource('/equips',  EquipController::class)->middleware(['auth','role:JUGADOR']);
+
 Route::get('/equips/{id}',[ EquipController::class, 'show'])->middleware('auth:sanctum');
 Route::get('/equips/list/{id}',[ EquipController::class, 'list'])->middleware('auth:sanctum');
 Route::put('/equips/{id}/{punts}',[ EquipController::class, 'update'])->middleware('auth:sanctum');
 
 Route::apiResource('/fitas',  FitaController::class)->middleware('auth:sanctum');
-
 
 Route::apiResource('/fitasfetas',  FitaFetaController::class);
 Route::get('/fitasfetas/{id}',[ FitaFetaController::class, 'show']);//necessita clau composta o ferho difrent
@@ -55,10 +57,6 @@ Route::get('/combats/{id}',[ CombatController::class, 'show']);//necessita clau 
 
 Route::put('/combats/{id}',[ CombatController::class, 'update']);
 Route::post('/combats/{id}',[ CombatController::class, 'store']);
-
-Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
-    // Protected admin routes here
-
 
 Route::apiResource('/jugadors',  JugadorController::class);//->middleware('auth:sanctum');
 Route::get('/jugadors/{id}',[  JugadorController::class, 'show'])->middleware('auth:sanctum');
