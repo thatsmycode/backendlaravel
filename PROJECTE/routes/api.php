@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\PartidaController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\TokenController;
@@ -43,5 +44,6 @@ Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
     Route::get('/combats/{id}',[ CombatController::class, 'show']); 
    
     Route::apiResource('/jugadors',  JugadorController::class);  
-    
+
+    Route::ApiResource('/users', UserController::class);
 });
