@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\FitaFeta;
 use App\Http\Resources\FitaFetaResource;
 use Illuminate\Http\Request;
- 
+use App\Models\Equip;
 class FitaFetaController extends Controller
 {
 
@@ -21,6 +21,7 @@ class FitaFetaController extends Controller
     {   
                 
     try{
+        $equip = $request->get('equip');
         $jugador = $request->get('jugador');
         $fita = $request->get('fita');
 
@@ -36,11 +37,17 @@ class FitaFetaController extends Controller
                 'fita_id' => $validatedData['fita']
             ]);
             $fitaFeta->save();
+        
+
+            $targetEquip =  Equip::find($equip);
+            $targetEquip->punts += 10;
+            $targetEquip->save();
 
             return response()->json([
                 'success' => true,
-                'message' => 'Fita aconseguida!',
-                'data'=> $fitaFeta
+                'message' => 'Fita aconseguida! 10 punts!',
+                'data'=> $fitaFeta,
+                'marcador' => $targetEquip->punts
             ], 200);
         }else{
             return response()->json([
