@@ -40,7 +40,8 @@ class FitaController extends Controller
 
         $fetes = $totalfitas->whereIn('id', $fitasfetaFitaIds)->all();
         $nofetes = $totalfitas->whereNotIn('id', $fitasfetaFitaIds)->all();
-        
+
+        $fetes = array_values($fetes);
         }
         return response()->json([
             'success' => true,
