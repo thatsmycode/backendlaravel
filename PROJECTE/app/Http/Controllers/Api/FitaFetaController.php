@@ -73,9 +73,9 @@ class FitaFetaController extends Controller
 
             if ($fitaFeta->count() === 0) {
             return response()->json([
-                'success' => false,
+                'success' => true,
                 'message' => 'Cap fita aconseguida',
-            ], 404);
+            ], 200);
         }
         else{
             return response()->json([

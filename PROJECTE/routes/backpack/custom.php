@@ -18,9 +18,7 @@ Route::group([
     ),
     'namespace'  => 'App\Http\Controllers\Admin',
 ], function () { // custom admin routes
-   // Route::middleware('admin')->group(function () {
-// Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
-  
+ 
     Route::crud('fita-feta', 'FitaFetaCrudController');
     Route::crud('jugador', 'JugadorCrudController');
     Route::crud('fita', 'FitaCrudController');
@@ -29,5 +27,5 @@ Route::group([
     Route::crud('tipus-fita', 'TipusFitaCrudController');
     Route::crud('user', 'UserCrudController');
     Route::crud('equip', 'EquipCrudController');
-// });
+
 }); // this should be the absolute last line of this file

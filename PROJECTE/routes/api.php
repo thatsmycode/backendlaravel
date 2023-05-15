@@ -21,7 +21,7 @@ Route::post('/register', [TokenController::class, 'register']);
 Route::post('/login', [TokenController::class, 'login']);
 Route::post('/logout', [TokenController::class, 'logout'])->middleware('auth:sanctum');
 
-Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
+Route::middleware(['auth:sanctum', 'role:jugador'])->group(function () {
 
     Route::apiResource('/partidas', PartidaController::class); 
     Route::get('/partidas/{id}', [PartidaController::class, 'show']); 

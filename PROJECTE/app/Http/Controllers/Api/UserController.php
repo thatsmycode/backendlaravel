@@ -36,11 +36,11 @@ public function store(Request $request)
    
 
 
-    if ($request->hasFile('image')) {
-        $image = $request->file('image');
-        $fileName = $image->getClientOriginalName();
-        $destinationPath = base_path() . '/public/uploads/images/product/' . $fileName;
-        $image->move($destinationPath, $fileName);
+    if ($request->hasFile('img')) {
+        $img = $request->file('img');
+        $fileName = $img->getClientOriginalName();
+        $destinationPath = base_path() . '/public';// . $fileName;
+        $img->move($destinationPath, $fileName);
         $user->img = $destinationPath;
         $user->save();
     }
