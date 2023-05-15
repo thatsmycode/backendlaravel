@@ -35,6 +35,8 @@ Route::middleware(['auth:sanctum', 'role:jugador'])->group(function () {
 
     Route::apiResource('/fitas',  FitaController::class);
 
+    Route::post('/fitas/list' , [FitaController::class, 'list']);
+
     Route::apiResource('/fitasfetas',  FitaFetaController::class);
  
     Route::post('/fitasfetas/check',[ FitaFetaController::class, 'show']);//si jugador la te feta re sino la fa

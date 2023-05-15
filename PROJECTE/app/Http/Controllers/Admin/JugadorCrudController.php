@@ -39,7 +39,7 @@ class JugadorCrudController extends CrudController
      * @return void
      */
     protected function setupListOperation()
-    {
+    {   CRUD::column('id');
         CRUD::column('user_id');
         CRUD::column('soldadets');
         CRUD::column('equip_id');
