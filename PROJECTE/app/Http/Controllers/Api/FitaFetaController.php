@@ -20,15 +20,18 @@ class FitaFetaController extends Controller
     public function store(Request $request)
     {   
                 
-    try{
-        $equip = $request->get('equip');
-        $jugador = $request->get('jugador');
-        $fita = $request->get('fita');
-
         $validatedData = $request->validate([
-            'jugador' => 'required|numeric',
-            'fita' => 'required|numeric',
+            'equip' => 'required|integer',
+            'jugador' => 'required|integer',
+            'fita' => 'required|integer'
         ]);
+        
+    try{
+        $equip = $validatedData['equip'];
+        $jugador = $validatedData['jugador'];
+        $fita = $validatedData['fita'];
+
+        
         $fitaFeta = FitaFeta::where('fita_id', $fita)->where('jugador_id',$jugador)->first();
 
         if (!$fitaFeta){       

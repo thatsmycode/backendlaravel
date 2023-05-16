@@ -18,11 +18,14 @@ class FitaController extends Controller
 
     public function list(Request $request)
     {   
-        $partida = $request->get('partida');
-        $id = $request->get('id');
+        $validatedData = $request->validate([
+            'partida' => 'required|integer',
+            'id' => 'required | integer'
+        ]);
+
+        $partida = $validatedData['partida'];
+        $id = $validatedData['id'];
         try{
-        
-         
 
         $fitasfetas = FitaFeta::where('jugador_id', $id)->get();
 
@@ -54,4 +57,13 @@ class FitaController extends Controller
         }
     }//incloure aqui fotos de qui l'ha fet?
    
+//public function checklocation(Request $request){ //x si no va be fero a frontend
+//$position= $request->get('position');
+
+ 
+
+
+ 
+
+
 }

@@ -44,10 +44,14 @@ public function show(int $id)
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'equip' => 'required|integer',
+        ]);
+
         try{
-    
+         
             $user = $request->user();
-            $equip= $request->get('equip');//mo passa per post en el body
+            $equip = $validatedData['equip']; //mo passa per post en el body
 
             $jugador = Jugador::where('user_id', $user->id)
             ->where('equip_id', $equip)->first();

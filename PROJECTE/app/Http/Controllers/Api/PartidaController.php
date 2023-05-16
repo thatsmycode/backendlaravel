@@ -16,6 +16,7 @@ class PartidaController extends Controller
 
 public function show(int $id)
 {
+    
     $partida = Partida::find($id);
     if (!$partida) {
         return response()->json([

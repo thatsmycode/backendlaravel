@@ -11,7 +11,11 @@ class UserController extends Controller
  
 public function store(Request $request)
 {   
-    
+    $request->validate([
+        'name' => 'required|string|max:15',
+        'img' => 'nullable |mimes:jpeg,jpg,png|max:2048',//jfif?
+    ]);
+
     try{
 
 
@@ -19,21 +23,12 @@ public function store(Request $request)
 
     $user = User::find($id->id);
 
-    $request->validate([
-        'name' => 'required|string|max:15',
-        'img' => 'required|image|max:2048',
-    ]);
+    $user->name = $request->get('name');
 
     // delete old file
     if($user->img) {
         Storage::delete($user->img);       
     }
-
-    // save new file
-  //  $image = $request->file('img')->store('public');
-    
-   // $user->name = $request->name;
-   
 
 
     if ($request->hasFile('img')) {
