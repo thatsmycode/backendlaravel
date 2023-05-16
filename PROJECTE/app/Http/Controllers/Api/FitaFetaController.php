@@ -17,6 +17,9 @@ class FitaFetaController extends Controller
         return FitaFetaResource::collection($fitaFetas);
     }
 
+
+
+    
     public function store(Request $request)
     {   
                 

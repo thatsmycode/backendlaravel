@@ -8,13 +8,34 @@ use App\Http\Resources\FitaResource;
 use App\Models\FitaFeta;
 use App\Models\Jugador;
 use Illuminate\Http\Request;
+use App\Models\User;
 class FitaController extends Controller
 {
-    public function index()
-    {
-        $fitas = Fita::all();
-        return FitaResource::collection($fitas);
+    public function show(int $idfita){
+    try{
+        $fotos = [];
+        $fita = Fita::find($idfita); // FITA EN CONCRET
+        $feta = FitaFeta::where('fita_id', $fita->id)->get();//totes les fites fetes de la fita en concret
+
+        $jugadorIds = $feta->pluck('jugador_id'); // llista jugadors_ids de la fitafeta
+        
+        $jugadors = Jugador::whereIn('id', $jugadorIds)->get();
+        
+        foreach ($jugadors as $jugador){
+            $user = User::find($jugador->user_id);
+            $foto = $user->img;
+            $fotos[] = $foto;
+        }      
+    
+        return response()->json([
+                'success' => true,
+                'data' => $fotos,
+                 
+        ], 200);  
+    }catch (\Exception $e){
+        return response()->json(['error' => $e->getMessage()], 500);
     }
+}
 
     public function list(Request $request)
     {   
