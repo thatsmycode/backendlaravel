@@ -12,6 +12,7 @@ use App\Models\User;
 class FitaController extends Controller
 {
     public function show(int $idpartida){// id fita
+        try{
         $fitespartida = Fita::where('partida_id', $idpartida)->get();
         $llistafotos = [];
         
@@ -33,6 +34,9 @@ class FitaController extends Controller
             'success' => true,
             'data' => $llistafotos,
         ], 200);
+    }catch (\Exception $e){
+        return response()->json(['error' => $e->getMessage()], 500);
+    }
         
 
 /*
