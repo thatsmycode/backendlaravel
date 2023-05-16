@@ -8,38 +8,12 @@ use App\Models\FitaFeta;
 use App\Models\Jugador;
 use Illuminate\Http\Request;
 
-class FitaController extends Controller
+class PutaController extends Controller
 {
-    public function show(int $idpartida){
-        try{
-        $fitespartida = Fita::where('partida_id', $idpartida)->get();
-        $llistafotos = [];
-        
-        foreach ($fitespartida as $cadauna) {
-            $fitespartidafetes = FitaFeta::where('fita_id', $cadauna->id)->get();
-        
-            if (!isset($llistafotos[$cadauna->id])) {
-                $llistafotos[$cadauna->id] = [];
-            }
-        
-            foreach ($fitespartidafetes as $fitaFeta) {
-                $jugador = Jugador::find($fitaFeta->jugador_id);
-                $user = $jugador->user;
-                $llistafotos[$cadauna->id][] = $user->img;
-            }
-        }
-        
-        return response()->json([
-            'success' => true,
-            'data' => $llistafotos,
-        ], 200);
-    }catch (\Exception $e){
-        return response()->json(['error' => $e->getMessage()], 500);
-    }
 
-}
 
-    public function list(int $partida , int $id)    //(Request $request)
+
+public function list(int $partida , int $id)    //(Request $request)
     {   
         /*$validatedData = $request->validate([
             'partida' => 'required|integer',
@@ -81,13 +55,5 @@ class FitaController extends Controller
         }
     }
    
-//public function checklocation(Request $request){ //x si no va be fero a frontend
-//$position= $request->get('position');
-
- 
-
-
- 
-
 
 }

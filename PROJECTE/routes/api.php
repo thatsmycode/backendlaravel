@@ -11,7 +11,7 @@ use App\Http\Controllers\Api\EquipController;
 use App\Http\Controllers\Api\FitaFetaController;
 use App\Http\Controllers\Api\CombatController;
 use App\Http\Controllers\Api\JugadorController;
-
+use App\Http\Controllers\Api\PutaController;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -35,7 +35,9 @@ Route::middleware(['auth:sanctum', 'role:jugador'])->group(function () {
 
     Route::apiResource('/fitas',  FitaController::class);
 
-    Route::post('/fitas/list' , [FitaController::class, 'list']);
+    Route::get('/fitas/list/{partida}/{id}' , [FitaController::class, 'list']);
+
+Route::get('/puta/{partida}/{id}', [ PutaController::class, 'list']);
 
     Route::apiResource('/fitasfetas',  FitaFetaController::class);
  
