@@ -8,7 +8,7 @@ use App\Http\Resources\FitaResource;
 use App\Models\FitaFeta;
 use App\Models\Jugador;
 use Illuminate\Http\Request;
-use App\Models\User;
+
 class FitaController extends Controller
 {
     public function show(int $idpartida){// id fita
@@ -37,40 +37,7 @@ class FitaController extends Controller
     }catch (\Exception $e){
         return response()->json(['error' => $e->getMessage()], 500);
     }
-        
 
-/*
-    try{
-        $fotos = [];
-        $fita = Fita::find($idfita); // FITA EN CONCRET
-        $feta = FitaFeta::where('fita_id', $fita->id)->get();//totes les fites fetes de la fita en concret
-        
-        if ($feta){
-
-        $jugadorIds = $feta->pluck('jugador_id'); // llista jugadors_ids de la fitafeta      
-        $jugadors = Jugador::whereIn('id', $jugadorIds)->get();
-        
-        foreach ($jugadors as $jugador){
-            $user = User::find($jugador->user_id);
-            $foto = $user->img;
-            $fotos[] = $foto;
-        }      
-    
-        return response()->json([
-                'success' => true,
-                'data' => $fotos,
-                 
-        ], 200); 
-    }else{
-        return response()->json([
-            'success' => false,
-            'data' => 'no hi han imatges per aquesta fita',
-             
-    ], 200);
-    } 
-    }catch (\Exception $e){
-        return response()->json(['error' => $e->getMessage()], 500);
-    }*/
 }
 
     public function list(Request $request)
@@ -90,7 +57,7 @@ class FitaController extends Controller
 
             return response()->json([
                 'success' => false,
-                'message' => 'no hi han fitas fetas',
+                'message' => 'aquest jugador no te cap fita feta',
             ], 200);
         } else {
            
@@ -102,6 +69,7 @@ class FitaController extends Controller
         $nofetes = $totalfitas->whereNotIn('id', $fitasfetaFitaIds)->all();
 
         $fetes = array_values($fetes);
+        $nofetes = array_values($nofetes);
         }
         return response()->json([
             'success' => true,
@@ -112,7 +80,7 @@ class FitaController extends Controller
         }catch (\Exception $e){
             return response()->json(['error' => $e->getMessage()], 500);
         }
-    }//incloure aqui fotos de qui l'ha fet?
+    }
    
 //public function checklocation(Request $request){ //x si no va be fero a frontend
 //$position= $request->get('position');
