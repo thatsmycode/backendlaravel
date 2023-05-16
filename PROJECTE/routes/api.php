@@ -11,7 +11,7 @@ use App\Http\Controllers\Api\EquipController;
 use App\Http\Controllers\Api\FitaFetaController;
 use App\Http\Controllers\Api\CombatController;
 use App\Http\Controllers\Api\JugadorController;
-
+//comentari per comprovar una cosa
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -39,7 +39,7 @@ Route::middleware(['auth:sanctum', 'role:jugador'])->group(function () {
 
     Route::apiResource('/fitasfetas',  FitaFetaController::class);
  
-    Route::post('/fitasfetas/check',[ FitaFetaController::class, 'show']);//si jugador la te feta re sino la fa
+    Route::post('/fitasfetas/check', [ FitaFetaController::class, 'show']);//si jugador la te feta re sino la fa
 
     Route::apiResource('/combats',  CombatController::class);
 
