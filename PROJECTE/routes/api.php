@@ -31,7 +31,7 @@ Route::middleware(['auth:sanctum', 'role:jugador'])->group(function () {
     Route::apiResource('/equips',  EquipController::class);
     
     Route::get('/equips/list/{id}',[ EquipController::class, 'list']);
-    //fer api de actualizar marcadors?
+    
 
     Route::apiResource('/fitas',  FitaController::class);
 

@@ -41,24 +41,11 @@ class FitaController extends Controller
 
     public function list(int $partida , int $id)    //(Request $request)
     {   
-        /*$validatedData = $request->validate([
-            'partida' => 'required|integer',
-            'id' => 'required | integer'
-        ]);*/
-
-        //$partida = $validatedData['partida'];
-        //$id = $validatedData['id'];
         try{
 
         $fitasfetas = FitaFeta::where('jugador_id', $id)->get();
 
-        if (($fitasfetas->count() === 0) ) {
-
-            return response()->json([
-                'success' => false,
-                'message' => 'aquest jugador no te cap fita feta',
-            ], 200);
-        } else {
+       
            
         $totalfitas = Fita::where('partida_id', $partida)->get();
  
@@ -69,7 +56,7 @@ class FitaController extends Controller
 
         $fetes = array_values($fetes);
         $nofetes = array_values($nofetes);
-        }
+        
         return response()->json([
             'success' => true,
             'fetes' => $fetes,
@@ -81,13 +68,4 @@ class FitaController extends Controller
         }
     }
    
-//public function checklocation(Request $request){ //x si no va be fero a frontend
-//$position= $request->get('position');
-
- 
-
-
- 
-
-
 }
