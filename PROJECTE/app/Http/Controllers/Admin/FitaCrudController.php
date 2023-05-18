@@ -44,11 +44,7 @@ class FitaCrudController extends CrudController
         CRUD::column('partida_id');
         CRUD::column('tipus_id');
 
-        /**
-         * Columns can be defined using the fluent syntax or array syntax:
-         * - CRUD::column('price')->type('number');
-         * - CRUD::addColumn(['name' => 'price', 'type' => 'number']); 
-         */
+       
     }
 
     /**

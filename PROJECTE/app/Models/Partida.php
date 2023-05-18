@@ -13,8 +13,8 @@ class Partida extends Model
     
     protected $fillable = [
         'id',
-        'poblacio',
         'nom',
+        'poblacio',
         'puntsVictoria',
         'duracio',
         'mapa_id', 
