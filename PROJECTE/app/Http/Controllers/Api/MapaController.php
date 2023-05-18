@@ -16,7 +16,8 @@ public function index()
 }
 
 public function show(int $id)
-{
+{   
+    
     $mapa = Mapa::find($id);
     if (!$mapa) {
         return response()->json([
@@ -29,8 +30,8 @@ public function show(int $id)
             'data'    => new MapaResource($mapa)
         ], 200);
     }
-     
-}
+} 
+
 
 
 }

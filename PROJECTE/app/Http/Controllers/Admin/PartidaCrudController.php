@@ -38,7 +38,7 @@ class PartidaCrudController extends CrudController
      * @return void
      */
     protected function setupListOperation()
-    {
+    {   CRUD::column('poblacio');
         CRUD::column('nom');
         CRUD::column('puntsVictoria');
         CRUD::column('duracio');
@@ -61,6 +61,7 @@ class PartidaCrudController extends CrudController
     {
         CRUD::setValidation(PartidaRequest::class);
 
+        CRUD::field('poblacio');
         CRUD::field('nom');
         CRUD::field('puntsVictoria');
         CRUD::field('duracio');

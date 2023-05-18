@@ -5,10 +5,33 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Equip;
+use App\Models\Jugador;
+use App\Models\Partida;
 
 class UserController extends Controller
 {
- 
+    public function index(Request $request)
+    {
+        $user = $request->user();
+        $jugadors = Jugador::where('user_id', $user->id)->with('equip.partida')->get();
+        
+        $jugadorsData = [];
+        foreach ($jugadors as $jugador) {
+            $jugadorsData[] = [
+                'nom' => $user->name,
+                'jugador_id' => $jugador->id,
+                'equip_id' => $jugador->equip->id,
+                'partida_id' => $jugador->equip->partida->id
+            ];
+        }
+        
+        return response()->json([
+            'success' => true,
+            'jugadors' => $jugadorsData
+        ], 200);
+    }
+    
 public function store(Request $request)
 {   
     $request->validate([
