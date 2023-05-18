@@ -13,6 +13,7 @@ class Partida extends Model
     
     protected $fillable = [
         'id',
+        'poblacio',
         'nom',
         'puntsVictoria',
         'duracio',
@@ -21,9 +22,7 @@ class Partida extends Model
     public function fita(){
         return $this->hasMany(Fita::class);
     }
-    public function esdeveniment(){
-        return $this->hasMany(Esdeveniment::class);
-    }
+   
     public function equip(){
         return $this->hasMany(Equip::class);
     }

@@ -14,7 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('partidas', function (Blueprint $table) {
-            $table->id();           
+            $table->id();         
+            $table->string('poblacio');  
             $table->string('nom');
             $table->integer('puntsVictoria');           
             $table->integer('duracio');
