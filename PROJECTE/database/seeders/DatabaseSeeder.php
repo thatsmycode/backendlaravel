@@ -44,14 +44,25 @@ class DatabaseSeeder extends Seeder
        
         $mapa->save();
         
-        $partida = new Partida([
+        $partidas = [ new Partida([
             'poblacio' => 'Vilanova',
             'nom' => 'Vilanovina',
             'puntsVictoria' => 100,
             'duracio' => 30,
             'mapa_id' => 1
-        ]);
-        $partida->save();
+        ]),
+        new Partida([
+            'poblacio' => 'Vilanova',
+            'nom' => 'policies vs lladres',
+            'puntsVictoria' => 100,
+            'duracio' => 30,
+            'mapa_id' => 1
+        ])
+        ];
+        foreach ($partidas as $partida){
+            $partida->save();
+        }
+        
 
 
         $tipusfita = [
@@ -104,6 +115,44 @@ class DatabaseSeeder extends Seeder
             $fita->save();
         }
 
+        $fitas2 = [
+            new Fita([
+                'lat' => 41.2245400,
+                'long' => 1.7255100,
+                'partida_id' => 2,
+                'tipus_id'  => 2
+            ]),
+            new Fita([
+                'lat' => 41.2242100,
+                'long' => 1.7259300,
+                'partida_id' => 2,
+                'tipus_id'  => 1
+            ]),
+            new Fita([
+                'lat' => 41.2173000,
+                'long' => 1.7389200,
+                'partida_id' => 2,
+                'tipus_id'  => 1
+            ]),
+            new Fita([
+                'lat' => 41.2145400,
+                'long' => 1.7255100,
+                'partida_id' => 2,
+                'tipus_id'  => 1
+            ]),
+            new Fita([
+                'lat' => 41.22200,
+                'long' => 1.71563,
+                'partida_id' => 2,
+                'tipus_id'  => 1
+            ]),
+        ];
+    
+        
+        foreach ($fitas2 as $fita2) {
+            $fita2->save();
+        }
+
 
         $equips = [
         new Equip([
@@ -122,5 +171,23 @@ class DatabaseSeeder extends Seeder
         foreach ($equips as $equip) {
             $equip->save();
         }
+
+        $equips2 = [
+            new Equip([
+                 
+            'partida_id' => 2 ,
+            'nom' => 'polis',
+            'punts' => 0
+            ]),
+    
+            new Equip([
+               
+            'partida_id'  => 2,
+            'nom' => 'kakos',
+            'punts'  => 0
+            ])];
+            foreach ($equips2 as $equip2) {
+                $equip2->save();
+            }
     }
 }

@@ -11,7 +11,7 @@ use App\Http\Controllers\Api\EquipController;
 use App\Http\Controllers\Api\FitaFetaController;
 use App\Http\Controllers\Api\CombatController;
 use App\Http\Controllers\Api\JugadorController;
-//comentari per comprovar una cosa
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
