@@ -44,7 +44,7 @@ class TokenController extends Controller
             'email'    => $data['email'],
             'password' => Hash::make($data['password']),            
         
-        ])->assignRole('jugador');
+        ])->assignRole('admin');
         
         $token = $user->createToken("authToken")->plainTextToken;
 

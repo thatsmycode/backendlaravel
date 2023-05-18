@@ -14,8 +14,8 @@ class Equip extends Model
     public $timestamps = false;
     protected $fillable = [
         'id',
-        'partida_id',
         'nom',
+        'partida_id',
         'punts'        
     ];
     public function partida()
