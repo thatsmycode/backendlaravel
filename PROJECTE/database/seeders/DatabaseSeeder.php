@@ -25,13 +25,7 @@ class DatabaseSeeder extends Seeder
         }
         
 
-        $useradmin = new User([
-            'name'      => 'admin123',
-            'email'     => 'admin123@gmail.com',
-            'password'  => 'admin123',
-        ]);
-        $useradmin->assignRole('admin');
-        $useradmin->save();
+    
 
         $mapas = [ new Mapa([
             
