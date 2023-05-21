@@ -18,6 +18,7 @@ class PartidaResource extends JsonResource
         return [
             'id' => $this->id,
             'nom' => $this->nom,
+            'poblacio' => $this->poblacio,
             'duracio' => $this->duracio,
             'puntsVictoria'=> $this->puntsVictoria,
             'mapa_id' => $this->mapa_id,

@@ -31,50 +31,25 @@ class FitaFetaCrudController extends CrudController
         CRUD::setEntityNameStrings('fita feta', 'fita fetas');
     }
 
-    /**
-     * Define what happens when the List operation is loaded.
-     * 
-     * @see  https://backpackforlaravel.com/docs/crud-operation-list-entries
-     * @return void
-     */
+
     protected function setupListOperation()
     {
-        CRUD::column('jugador_id');
-        CRUD::column('fita_id');
+        CRUD::column('jugador_id')->label('Jugador')->type('select')->entity('jugador')->attribute('id')->model('App\Models\Jugador');
+        CRUD::column('fita_id')->label('Fita')->type('select')->entity('fita')->attribute('id')->model('App\Models\Fita');
 
-        /**
-         * Columns can be defined using the fluent syntax or array syntax:
-         * - CRUD::column('price')->type('number');
-         * - CRUD::addColumn(['name' => 'price', 'type' => 'number']); 
-         */
+
+     
     }
 
-    /**
-     * Define what happens when the Create operation is loaded.
-     * 
-     * @see https://backpackforlaravel.com/docs/crud-operation-create
-     * @return void
-     */
+   
     protected function setupCreateOperation()
     {
         CRUD::setValidation(FitaFetaRequest::class);
 
-        CRUD::field('jugador_id');
-        CRUD::field('fita_id');
-
-        /**
-         * Fields can be defined using the fluent syntax or array syntax:
-         * - CRUD::field('price')->type('number');
-         * - CRUD::addField(['name' => 'price', 'type' => 'number'])); 
-         */
+        CRUD::field('jugador_id')->label('Jugador')->type('select')->entity('jugador')->attribute('id')->model('App\Models\Jugador');
+        CRUD::field('fita_id')->label('Fita')->type('select')->entity('fita')->attribute('id')->model('App\Models\Fita');
     }
 
-    /**
-     * Define what happens when the Update operation is loaded.
-     * 
-     * @see https://backpackforlaravel.com/docs/crud-operation-update
-     * @return void
-     */
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();

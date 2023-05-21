@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('jugadors', function (Blueprint $table) {
             $table->id();
-            $table->integer('soldadets')->default('5');
             $table->unsignedBigInteger('user_id');
+            $table->integer('soldadets')->default('5');          
             $table->foreign('user_id')->references('id')->on('users')
             ->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('equip_id');

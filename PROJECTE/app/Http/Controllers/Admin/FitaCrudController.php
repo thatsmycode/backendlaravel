@@ -38,7 +38,8 @@ class FitaCrudController extends CrudController
      * @return void
      */
     protected function setupListOperation()
-    {
+    {   
+        CRUD::column('id)');
         CRUD::column('lat');
         CRUD::column('long');
         CRUD::column('partida_id');
